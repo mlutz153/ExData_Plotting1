@@ -39,7 +39,9 @@ FIVE <- select(FIVE, Global_reactive_power, Date, Time)
 FIVE <- mutate(FIVE, DNT = paste(Date, Time, sep = "_"))
 y5 <- as.numeric(as.character(FIVE$Global_reactive_power))
 
+png('plot4.png')
 par(mfcol = c(2,2))
+
 plot(x,y, type = "l", xlab = " ", ylab = "Global Active Power (kilowatts)", pch = 20)
 plot(x,y1, type = "l", xlab = " ", ylab = "Energy sub metering",pch = 20)
 lines(x,y2, col = c("red"))
@@ -56,4 +58,4 @@ plot(x,y4, type = "l", xlab = "datetime", ylab = "Voltage", ylim = c(234,246), p
 plot(x,y5, type = "l", xlab = "datetime", ylab = "Global_reactive_power", ylim = c(0.0,0.5), pch = 20)
 
 
-dev.copy(png, file = "plot4.png")
+dev.off()

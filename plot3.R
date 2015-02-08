@@ -11,6 +11,7 @@ y1 <- as.numeric(as.character(HHNRG$Sub_metering_1))
 y2 <- as.numeric(as.character(HHNRG$Sub_metering_2))
 y3 <- as.numeric(as.character(HHNRG$Sub_metering_3))
 x <- dmy_hms(HHNRG$DNT)
+png('plot3.png')
 plot(x,y1, type = "l", xlab = " ", ylab = "Energy sub metering")
 lines(x,y2, col = c("red"))
 lines(x,y3, col = c("blue"))
@@ -22,5 +23,6 @@ legend("topright",
        lwd = .75, 
        cex = .75
 )
-dev.copy(png, file = "plot3.png")
+dev.off()
+
 
