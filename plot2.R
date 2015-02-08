@@ -1,0 +1,13 @@
+HHNRG <- read.table("exdata_data_household_power_consumption/household_power_consumption.txt", header = TRUE, sep = ";")
+library(data.table)
+HHNRG <- data.table(HHNRG)
+library(dplyr)
+HHNRG <- filter(HHNRG, Date == "1/2/2007"| Date == "2/2/2007")
+HHNRG <- select(HHNRG, Global_active_power, Date, Time)
+
+library(lubridate)
+HHNRG <- mutate(HHNRG, DNT = paste(Date, Time, sep = "_"))
+y <- as.numeric(as.character(HHNRG$Global_active_power))
+x <- dmy_hms(HHNRG$DNT)
+plot(x,y, type = "l", xlab = " ", ylab = "Global Active Power (kilowatts)")
+dev.copy(png, file = "plot2.png")

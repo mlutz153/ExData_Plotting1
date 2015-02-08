@@ -1,0 +1,8 @@
+HHNRG <- read.table("exdata_data_household_power_consumption/household_power_consumption.txt", header = TRUE, sep = ";")
+library(data.table)
+HHNRG <- data.table(HHNRG)
+library(dplyr)
+HHNRG <- filter(HHNRG, Date == "1/2/2007"| Date == "2/2/2007")
+HHNRG <- as.numeric(as.character(HHNRG$Global_active_power))
+hist(HHNRG, freq = TRUE, col = c("red"), main = "Global Active Power", xlab = "Global Active Power (kilowatts)", xlim = c(0,6), ylim = c(0, 1200))
+dev.copy(png, file = "plot1.png")
